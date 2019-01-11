@@ -8,6 +8,8 @@
 	
 	- #### HTTPS Server
 			 HTTPServerAPI api = new HTTPServerAPI(port, threads, HttpTypes.HTTPS, "myPassPhrase",  "fileName");
+			 
+		Don't put any extension to fileName.
 
  - ### Creating Routes
 	- #### With URL Parameters
