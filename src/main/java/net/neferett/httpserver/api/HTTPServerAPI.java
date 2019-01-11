@@ -8,6 +8,7 @@ import net.neferett.httpserver.api.Routing.RoutingProperties;
 import net.neferett.httpserver.api.Types.HttpTypes;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -70,8 +71,8 @@ public class HTTPServerAPI {
      * @param names classes names
      * @return
      */
-    public HTTPServerAPI addAllRoutesInPath(String path, List<String> names) {
-        this.manager.addFromPathList(path, names);
+    public HTTPServerAPI addAllRoutesInPath(String path, String... names) {
+        this.manager.addFromPathList(path, Arrays.asList(names));
 
         return this;
     }
