@@ -41,7 +41,7 @@ public class RouterManager {
 
     @SneakyThrows
     private Class<? extends RoutingProperties> buildClass(String path, String name) {
-        return (Class<? extends RoutingProperties>) Class.forName(path + name);
+        return (Class<? extends RoutingProperties>) Class.forName(path + "." + name);
     }
 
     public void addFromPath(String path, String name) {

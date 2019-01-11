@@ -39,11 +39,13 @@ public abstract class RoutingProperties implements HttpHandler {
     private void build(HttpExchange exchange) {
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
-        String[] tab = exchange.getRequestURI().getPath().substring(this.name.length() + 1).split("/");
+        if (this.setParams.length > 0) {
+            String[] tab = exchange.getRequestURI().getPath().substring(this.name.length() + 1).split("/");
 
-        this.params = IntStream.range(0, tab.length)
-                .boxed()
-                .collect(Collectors.toMap(x -> this.setParams[x], y -> tab[y]));
+            this.params = IntStream.range(0, this.setParams.length)
+                    .boxed()
+                    .collect(Collectors.toMap(x -> this.setParams[x], y -> tab[y]));
+        }
 
         String response = this.routeAction(exchange).toString();
 
