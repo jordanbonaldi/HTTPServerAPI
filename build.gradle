@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'HttpServerAPI'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+task buildEngine(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'A CoreEngine SoftWare',
+                'Implementation-Version': version,
+                'Main-Class': 'net.neferett.httpserver.api.HTTPServerAPI'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    compile group: 'org.json', name: 'json', version: '20180813'
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+}
