@@ -1,6 +1,5 @@
 package net.neferett.httpserver.api.Handler;
 
-import com.sun.istack.internal.Nullable;
 import com.sun.net.httpserver.HttpServer;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -17,9 +16,9 @@ public class HTTPServerHandler implements HttpServerInterface {
 
     private final int threads;
 
-    private @Nullable final String certificatePassword;
+    private final String certificatePassword;
 
-    private @Nullable final String filename;
+    private final String filename;
 
     private HttpServer server;
 
